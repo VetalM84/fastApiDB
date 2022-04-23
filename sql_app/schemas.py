@@ -1,9 +1,26 @@
 from pydantic import BaseModel
 
 
+class CategoryBase(BaseModel):
+    name: str
+
+
+class CategoryCreate(CategoryBase):
+    pass
+
+
+class Category(CategoryBase):
+    id: int
+    name: int
+
+    class Config:
+        orm_mode = True
+
+
 class ItemBase(BaseModel):
     title: str
     description: str | None = None
+    category_id: int
 
 
 class ItemCreate(ItemBase):
